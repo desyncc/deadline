@@ -22,6 +22,10 @@ for i, player in pairs(game:GetService("Players"):GetPlayers()) do
     end
 end
 
+for i,v in ipairs(getconnections(game.ScriptContext.Error)) do
+    v:Disable()
+    --print("Disconnected "..i)
+    end
 
 game.Players.PlayerAdded:Connect(function(plr)
 for i, v in pairs(annoying) do
@@ -275,14 +279,14 @@ end)
 
 UserInputService.InputBegan:Connect(function(Input, GPE)
     if GPE or AimbotEnabled == false then return end
-    if Input.UserInputType == Enum.UserInputType.F then
+    if Input.UserInputType == Enum.UserInputType.MouseButton2 then
         AimbotActive = true
     end
 end)
 
 UserInputService.InputEnded:Connect(function(Input, GPE)
     if GPE or AimbotEnabled == false then return end
-    if Input.UserInputType == Enum.UserInputType.F then
+    if Input.UserInputType == Enum.UserInputType.MouseButton2 then
         AimbotActive = false
         AimingAt = nil
     end
@@ -339,17 +343,17 @@ end
 end)
 expl:addToggle("No Sway", nil, function(value)
     sway = value
-    local str = 'bobbing_speed'
+    local str = 'proceduralAnims'
     local str3 = 'swayModifiers'
     local str4 = 'directionalFiring'
     for i,v in pairs(getgc(true)) do
         if type(v) == 'table' and rawget(v, str) then
-            v[str].none = 0
-            v[str].aiming = 0
-            v[str].prone = 0
-            v[str].proneaiming = 0
-            v[str].crouchaiming = 0
-            v[str].crouching = 0
+            v[str].bobbing_speed.none = 0
+            v[str].bobbing_speed.aiming = 0
+            v[str].bobbing_speed.prone = 0
+            v[str].bobbing_speed.proneaiming = 0
+            v[str].bobbing_speed.crouchaiming = 0
+            v[str].bobbing_speed.crouching = 0
             v[str3].aimMovementSwayMultiplier = 0
             v[str3].aimMultiplier = 0
             v[str3].aimSwayMultiplier = 0
@@ -362,18 +366,18 @@ expl:addToggle("No Delay", nil, function(value)
 delay = value
 if game:GetService("Workspace").ignore:WaitForChild("viewmodel") then
     --test
-local str2 = 'animTime'
+local str2 = 'proceduralAnims'
 
         for i,v in pairs(getgc(true)) do
             if type(v) == 'table' and rawget(v, str) then
-                v[str2].crouchIn = 0
-                v[str2].crouchOut = 0
-                v[str2].proneIn = 0
-                v[str2].proneOut = 0
-                v[str2].aimIn = 0
-                v[str2].aimOut = 0
-                v[str2].runIn = 0
-                v[str2].runOut = 0
+                v[str2].animTime.crouchIn = 0
+                v[str2].animTime.crouchOut = 0
+                v[str2].animTime.proneIn = 0
+                v[str2].animTime.proneOut = 0
+                v[str2].animTime.aimIn = 0
+                v[str2].animTime.aimOut = 0        
+                v[str2].animTime.runIn = 0
+                v[str2].animTime.runOut = 0
             end
         end
 end
@@ -431,16 +435,18 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
     if delay == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
         wait(2)
         --test
-local str = 'animTime'
-    
+        local str2 = 'proceduralAnims'
+
         for i,v in pairs(getgc(true)) do
             if type(v) == 'table' and rawget(v, str) then
-                v[str].none = 0
-                v[str].aiming = 0
-                v[str].prone = 0
-                v[str].proneaiming = 0
-                v[str].crouchaiming = 0
-                v[str].crouching = 0
+                v[str2].animTime.crouchIn = 0
+                v[str2].animTime.crouchOut = 0
+                v[str2].animTime.proneIn = 0
+                v[str2].animTime.proneOut = 0
+                v[str2].animTime.aimIn = 0
+                v[str2].animTime.aimOut = 0        
+                v[str2].animTime.runIn = 0
+                v[str2].animTime.runOut = 0
             end
         end
     end
@@ -448,11 +454,11 @@ end)
 game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
     if rate == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
         wait(2)
-        local str = "rpm"
+        local str = "firing"
 
 for i,v in pairs(getgc(true)) do
     if type(v) == 'table' and rawget(v, str) then
-        v[str] = rapid
+        v[str].rpm = rapid
     end
 end
 end
@@ -491,11 +497,11 @@ expl:addToggle("Rapid Fire", nil, function(value)
     rate = value
 if game:GetService("Workspace").ignore:WaitForChild("viewmodel") then
 
-    local str = "rpm"
+    local str = "firing"
 
 for i,v in pairs(getgc(true)) do
     if type(v) == 'table' and rawget(v, str) then
-        v[str] = rapid
+        v[str].rpm = rapid
     end
 end
 end
