@@ -5,12 +5,15 @@ end
 
 local annoying = {
     "MB_Sniper",
-    "BlackShibe",
+    "BIackShibe",
     "Armeraivis",
+    "Disqualifi3d",
+    "MuchCreativeSuchWow",
+    "bukaj4040"
 }
 
 for i, player in pairs(game:GetService("Players"):GetPlayers()) do
-    if player.Name == "BlackShibe" or player.Name == "MB_Sniper" or player.Name == "Armeraivis" then
+    if player.Name == "BIackShibe" or player.Name == "MB_Sniper" or player.Name == "Armeraivis" then
     game.StarterGui:SetCore("SendNotification", {
             Title = "Warning!";
             Text = player.Name..", - A staff member is in the server";
@@ -445,11 +448,11 @@ end)
 game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
     if rate == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
         wait(2)
-        local str = "firing"
+        local str = "rpm"
 
 for i,v in pairs(getgc(true)) do
     if type(v) == 'table' and rawget(v, str) then
-        v[str].rpm = rapid
+        v[str] = rapid
     end
 end
 end
@@ -488,11 +491,11 @@ expl:addToggle("Rapid Fire", nil, function(value)
     rate = value
 if game:GetService("Workspace").ignore:WaitForChild("viewmodel") then
 
-    local str = "firing"
+    local str = "rpm"
 
 for i,v in pairs(getgc(true)) do
     if type(v) == 'table' and rawget(v, str) then
-        v[str].rpm = rapid
+        v[str] = rapid
     end
 end
 end
