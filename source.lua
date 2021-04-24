@@ -369,7 +369,7 @@ if game:GetService("Workspace").ignore:WaitForChild("viewmodel") then
 local str2 = 'proceduralAnims'
 
         for i,v in pairs(getgc(true)) do
-            if type(v) == 'table' and rawget(v, str) then
+            if type(v) == 'table' and rawget(v, str2) then
                 v[str2].animTime.crouchIn = 0
                 v[str2].animTime.crouchOut = 0
                 v[str2].animTime.proneIn = 0
@@ -438,7 +438,7 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
         local str2 = 'proceduralAnims'
 
         for i,v in pairs(getgc(true)) do
-            if type(v) == 'table' and rawget(v, str) then
+            if type(v) == 'table' and rawget(v, str2) then
                 v[str2].animTime.crouchIn = 0
                 v[str2].animTime.crouchOut = 0
                 v[str2].animTime.proneIn = 0
