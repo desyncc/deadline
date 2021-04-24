@@ -227,7 +227,6 @@ local pp = vis:addSection("ESP")
 
 section1:addToggle("Aimbot", nil, function(State)
 	AimbotEnabled = State
-    venyx:Notify("aimbot", value)
 end)
 section1:addToggle("Movement Prediction",nil, function(State)
 	MovementPredicition = State
