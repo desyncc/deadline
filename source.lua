@@ -2,6 +2,32 @@
 if not game:IsLoaded() then
 	game.Loaded:wait()
 end
+for i, v in next, getconnections(game:GetService('ScriptContext').Error) do
+    v:Disable()
+   end
+loadstring(game:HttpGet('https://pastebin.com/raw/444k40vk'))();
+getgenv().warn = function(text)
+    spawn(function()
+    rconsoleprint("@@RED@@")
+    rconsoleprint(text .."\n")
+    wait(9e9)
+    end)
+    end
+    getgenv().error = function(text)
+    spawn(function()
+    rconsoleprint("@@RED@@")
+    rconsoleprint(text .."\n")
+    wait(9e9)
+    end)
+    end
+    getgenv().print = function(text)
+    spawn(function()
+    rconsoleprint("@@RED@@")
+    rconsoleprint(text .."\n")
+    wait(9e9)
+    end)
+    end
+    
 
 local annoying = {
     "MB_Sniper",
@@ -22,10 +48,8 @@ for i, player in pairs(game:GetService("Players"):GetPlayers()) do
     end
 end
 
-for i,v in ipairs(getconnections(game.ScriptContext.Error)) do
-    v:Disable()
-    --print("Disconnected "..i)
-    end
+
+
 
 game.Players.PlayerAdded:Connect(function(plr)
 for i, v in pairs(annoying) do
@@ -394,9 +418,9 @@ if game:GetService("Workspace").ignore:WaitForChild("viewmodel") then
         end
 end
 end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-    if test == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
-        wait(2)
+game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
+    if test == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+        wait()
         local str = "recoil"
     
         for i,v in pairs(getgc(true)) do
@@ -407,9 +431,9 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
         end
     end
 end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-    if sway == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
-        wait(2)
+game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
+    if sway == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+        wait()
     local str = 'bobbing_speed'
     local str3 = 'swayModifiers'
     local str4 = 'directionalFiring'
@@ -430,9 +454,9 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
     end
     end
 end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-    if delay == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
-        wait(2)
+game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
+    if delay == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+        wait()
         --test
         local str2 = 'proceduralAnims'
 
@@ -450,9 +474,9 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
         end
     end
 end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-    if rate == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
-        wait(2)
+game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
+    if rate == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+        wait()
         local str = "firing"
 
 for i,v in pairs(getgc(true)) do
@@ -462,21 +486,21 @@ for i,v in pairs(getgc(true)) do
 end
 end
 end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-    if character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
-        wait(2)
+game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
+    if child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+        wait()
         local gg = "firing"
     
         for i,v in pairs(getgc(true)) do
             if type(v) == 'table' and rawget(v, gg) then
-                v[gg].tracerColor = sauce
+                v[gg].tracerColor = Color3.fromRGB(146, 248, 106)
             end
         end
     end
 end)
-game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
-    if factor == true and character and game:GetService("Workspace").ignore:WaitForChild("viewmodel") then 
-        wait(2)
+game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
+    if factor == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+        wait()
         local str = "firing"
 
         for i,v in pairs(getgc(true)) do
@@ -487,7 +511,14 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
     end
 end)
 
-
+expl:addToggle("Run Faster", nil, function(callback)
+    _G.yes = callback
+    if callback == true and lol == 1 then 
+        LocalPlayer.Character:BreakJoints()
+        wait()
+        lol = 2 
+    end
+end)
 expl:addToggle("Noclip", nil, function(callback)
     Clip = callback
 end)
@@ -505,23 +536,14 @@ for i,v in pairs(getgc(true)) do
 end
 end
 end)
-
-expl:addToggle("Speed Hack", nil, function(callback)
-    _G.yes = callback
-    if callback == true and lol == 1 then 
-        LocalPlayer.Character:BreakJoints()
-        wait()
-        lol = 2 
-    end
-end)
-
 expl:addSlider("Fire Rate", 2000, 0, 3000, function(value)
     rapid = value
 end)
-expl:addSlider("Speed Value", 20, 0, 200, function(callback)
-    speeed = callback
-end)
-expl:addColorPicker("Tracer Color", Color3.fromRGB(146, 248, 106), function(callback)
+
+
+
+
+expl:addColorPicker("Tracer Color(DORMANT)", Color3.fromRGB(140, 52, 235), function(callback)
     sauce = callback
     local gg = "firing"
         
@@ -541,6 +563,63 @@ for i,v in pairs(getgc(true)) do
         v[str].projectileRicochetFactor = 0
     end
 end
+end)
+expl:addToggle("Thirdperson", nil, function(value)
+    local tp=false
+	
+    TOGGLED = not TOGGLED
+    if value == false then
+        tp=false
+    else
+        tp=true
+    end
+
+game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(k)
+if k=="l" or k=="L" then
+if tp==false then
+tp=true
+else
+tp=false
+end
+end
+end)
+
+while wait() do
+if tp==true then
+game.Players.LocalPlayer.CameraMode = "Classic"
+game.Players.LocalPlayer.CameraMaxZoomDistance = 10
+game.Players.LocalPlayer.CameraMinZoomDistance = 10
+for _,v in pairs(workspace.Camera:GetDescendants()) do 
+pcall(function() 
+v.Transparency=1
+end)
+end
+else
+game.Players.LocalPlayer.CameraMode = "LockFirstPerson"
+game.Players.LocalPlayer.CameraMaxZoomDistance = 0
+game.Players.LocalPlayer.CameraMinZoomDistance = 0
+end
+end
+venyx:Notify("Thirdperson Key is L")
+end)
+expl:addToggle("Silent Footsteps", nil, function(value)
+if value == true then
+local mt = getrawmetatable(game)
+make_writeable(mt)
+
+local namecall = mt.__namecall
+
+mt.__namecall = newcclosure(function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if method == "FireServer" and tostring(self) == "replicate_sound" then
+       return
+    end
+    return namecall(self, table.unpack(args))
+end)
+end
+
 end)
 
 --esp
@@ -642,6 +721,24 @@ local Noclipping = nil
 		end
 	end
 Noclipping = game:GetService('RunService').Stepped:Connect(NoclipLoop)
+speeed = 20
+
+
+local UIS = game:GetService("UserInputService")
+
+UIS.InputBegan:Connect(function(Input, GameProcessedEvent)
+	--if not GameProcessedEvent then
+		if Input.KeyCode == Enum.KeyCode.LeftShift then
+			speeed = 34
+		end
+	--end
+end)
+
+UIS.InputEnded:Connect(function(Input, GameProcessedEvent)
+	if Input.KeyCode == Enum.KeyCode.LeftShift then
+		speeed = 26
+	end
+end)
 
 
 venyx:SelectPage(venyx.pages[1], true)
