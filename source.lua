@@ -117,7 +117,7 @@ local VisibilityCheck = false
 local TeamCheck = false
 local ShowFOV = false
 local AimingAt = nil
-local Smoothness = 6
+local Smoothness = 0
 local MovementPrediction = false
 local MovementPredictionStrength = 1
 Clip = false
@@ -414,12 +414,14 @@ if game:GetService("Workspace").ignore:WaitForChild("viewmodel") then
             if type(v) == 'table' and rawget(v, str) then
                 v[str].aiming = 0
                 v[str].none = 0
+                v[str].prone = 0
+                v[str].proneaiming = 0
             end
         end
 end
 end)
 game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
-    if test == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+    if test == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character.Humanoid then 
         wait()
         local str = "recoil"
     
@@ -432,7 +434,7 @@ game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
     end
 end)
 game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
-    if sway == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+    if sway == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character.Humanoid then 
         wait()
     local str = 'bobbing_speed'
     local str3 = 'swayModifiers'
@@ -455,7 +457,7 @@ game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
     end
 end)
 game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
-    if delay == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+    if delay == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character.Humanoid then 
         wait()
         --test
         local str2 = 'proceduralAnims'
@@ -475,7 +477,7 @@ game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
     end
 end)
 game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
-    if rate == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+    if rate == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character.Humanoid then 
         wait()
         local str = "firing"
 
@@ -487,19 +489,7 @@ end
 end
 end)
 game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
-    if child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
-        wait()
-        local gg = "firing"
-    
-        for i,v in pairs(getgc(true)) do
-            if type(v) == 'table' and rawget(v, gg) then
-                v[gg].tracerColor = Color3.fromRGB(146, 248, 106)
-            end
-        end
-    end
-end)
-game:GetService("Workspace").ignore.ChildAdded:Connect(function(child)
-    if factor == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character then 
+    if factor == true and child:WaitForChild("defaultAttachments") and child:IsA("Model") and child.Name == "viewmodel" and Client.Character.Humanoid then 
         wait()
         local str = "firing"
 
@@ -543,17 +533,7 @@ end)
 
 
 
-expl:addColorPicker("Tracer Color(DORMANT)", Color3.fromRGB(140, 52, 235), function(callback)
-    sauce = callback
-    local gg = "firing"
-        
-    for i,v in pairs(getgc(true)) do
-        if type(v) == 'table' and rawget(v, gg) then
-            v[gg].tracerColor = sauce
-        end
-    end
-    
-end)
+
 expl:addToggle("ProjectileRicochet", nil, function(value)
 factor = value
 local str = "firing"
