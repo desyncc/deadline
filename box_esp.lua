@@ -7,7 +7,7 @@ local Settings = {
     Box_Thickness = 1,
     Tracer_Origin = "Bottom", -- Middle or Bottom if FollowMouse is on this won't matter...
     Tracer_FollowMouse = false,
-    Tracers = true
+    Tracers = false
 }
 local Team_Check = {
     TeamCheck = false, -- if TeamColor is on this won't matter...
